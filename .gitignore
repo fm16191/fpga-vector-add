@@ -1,0 +1,16 @@
+*.o
+*.d
+*.out
+*.mon
+*.emu
+*.aocr
+*.aoco
+*.prj
+*.fpga_emu
+*.fpga_emu_buffers
+vector-add-buffers.fpga
+vector-add-usm.fpga
+*.a
+*.a_usm
+*.e*
+*.o*
