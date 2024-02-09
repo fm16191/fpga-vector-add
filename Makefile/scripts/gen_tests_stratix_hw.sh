@@ -1,6 +1,8 @@
 #!/bin/bash
 
-for version in $(echo "2022.3.1 2023.2.0.1 2023.0.1 2023.2.0.2_s 2023.0 2023.2.0 2023.1.0.4 2024.0.2.1 2023.1.1_cmake 2024.0.2 2023.1.1 2024.0 2023.1.2 test" | xargs); do
+# ls /glob/development-tools/versions/oneapi/*/oneapi/setvars.sh | sed -n 's/.*oneapi\/\(.*\)\/oneapi.*/\1/p'
+
+for version in $(echo "2022.3.1 2023.0.1 2023.0 2023.1.0.4 2023.1.1_cmake 2023.1.1 2023.1.2 2023.2.0.1 2023.2.0.2_s 2023.2.0 2024.0.2.1 2024.0.2 2024.0 test" | xargs); do
 
 fn="test_run_stratix_hw_${version}.sh"
 rm -f $fn

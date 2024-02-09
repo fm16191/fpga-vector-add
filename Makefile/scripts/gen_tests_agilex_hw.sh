@@ -1,7 +1,8 @@
 #!/bin/bash
 
-# 2022.3.1 -> nope
-for version in $(echo "2023.2.0.1 2023.0.1 2023.2.0.2_s 2023.0 2023.2.0 2023.1.0.4 2024.0.2.1 2023.1.1_cmake 2024.0.2 2023.1.1 2024.0 2023.1.2 test" | xargs); do
+# ls /glob/development-tools/versions/oneapi/*/oneapi/setvars.sh | sed -n 's/.*oneapi\/\(.*\)\/oneapi.*/\1/p'
+
+for version in $(echo "2022.3.1 2023.0.1 2023.0 2023.1.0.4 2023.1.1_cmake 2023.1.1 2023.1.2 2023.2.0.1 2023.2.0.2_s 2023.2.0 2024.0.2.1 2024.0.2 2024.0 test" | xargs); do
 
 fn="test_run_agilex_hw_${version}.sh"
 rm -f $fn
@@ -18,7 +19,7 @@ oneapi_version=$version
 source /glob/development-tools/versions/oneapi/\$oneapi_version/oneapi/setvars.sh --force
 
 TARGET=build-agilex-\$oneapi_version
-BOARD_NAME=de10_agilex:B2E2_8GBx4
+# BOARD_NAME=de10_agilex:B2E2_8GBx4
 
 # prepare env
 mkdir -p \$TARGET
