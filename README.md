@@ -1,8 +1,8 @@
 # Testing FPGA environments - vector-add case
 
-This repository is a package of vector-add tests designed for testing compilation using oneAPI's model, targetting FPGA devices.
+This repository contains vector-add test cases in cmake and makefile, to test different oneAPI compilation environments targeting different FPGA devices.
 
-The source code are from oneAPI-samples, but all additional scripts are from me.
+The source code is from oneAPI-samples, with additional scripts added by me.
 
 ***Testing on Intel's devcloud ?***
 
@@ -10,16 +10,16 @@ TDLR : [devcloud-summary](#devcloud-summary)
 
 # Testing on Intel's devcloud
 
-The idea here is to generate a custom vector-add environment for each oneAPI version, and try it to see what's working and what's not in compiling design for emulator, for report, for hardware, and running hardware design.
+The goal here is to create a specific vector-add environment for each oneAPI version and test it to figure out what works and what doesn't when compiling the design for emulator, for report, for hardware, and running the hardware design.
 
-One can get all oneAPI version available on Intel's devcloud :
+All available versions of oneAPI can be obtained from Intel's DevCloud using :
 ```bash
 ls /glob/development-tools/versions/oneapi/*/oneapi/setvars.sh | sed -n 's/.*oneapi\/\(.*\)\/oneapi.*/\1/p'
 ```
 
-Then iterating over each oneAPI version, a new script file is created that will create a new test-folder environment, load the specified oneAPI version, then try compiling the emulator, the report, the hardware and executing hardware if sucessfuly compiled.
+Iterating over each oneAPI version, a new script file is created to generate a test-folder environment, load the specified oneAPI version, and attempt to compile the emulator, report, and hardware. If hardware compilation is successful, the design is executed.
 
-Script generators are located as `scripts/gen_tests_<device>_hw.sh`.
+The script generators can be found as `scripts/gen_tests_<device>_hw.sh`.
 
 1. Generate scripts
 ```bash
@@ -28,7 +28,7 @@ cd scripts
 cd ..
 ```
 
-2. Run all scripts. Must be in the root folder, not the script one.
+1. Run all scripts from the root folder, not the scripts folder.
 ```bash
 for f in scripts/test_run_agilex*; do qsub $f; done
 ```
