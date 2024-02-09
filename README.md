@@ -98,3 +98,10 @@ for f in scripts/test_run_agilex*; do qsub $f; done
 | 2024.0.2 | YES | YES | YES | YES |
 | 2024.0 |  |  |  |  |
 | test |  |  |  |  |
+
+
+# Credits
+
+Source code from Intel's [oneAPI-samples](https://github.com/oneapi-src/oneAPI-samples/tree/master/DirectProgramming/C%2B%2BSYCL/DenseLinearAlgebra/vector-add)
+
+Scripts are mine
