@@ -12,14 +12,10 @@ SRC := src
 %.o: $(SRC)/%.cpp
 	$(CXX) $(CXXFLAGS) -fintelfpga -c $^ -o $@ -DFPGA=1
 
+
+# Emulator
 fpga_emu: vector-add-buffers.fpga_emu
 fpga_emu_usm: vector-add-usm.fpga_emu_usm
-
-hw: vector-add-buffers.fpga
-hw_usm: vector-add-usm.fpga
-
-report: vector-add-buffers_report.a
-report_usm: vector-add-usm_report.a_usm
 
 vector-add-buffers.fpga_emu: vector-add-buffers.o
 	$(CXX) $(CXXFLAGS) -fintelfpga $^ -o $@ -DFPGA_EMULATOR=1
@@ -27,12 +23,24 @@ vector-add-usm.fpga_emu_usm: vector-add-usm.o
 	$(CXX) $(CXXFLAGS) -fintelfpga $^ -o $@ -DFPGA_EMULATOR=1
 
 
+# Report 
+report: vector-add-buffers_report.a
+report_usm: vector-add-usm_report.a_usm
+
+vector-add-buffers_report.a: vector-add-buffers.o
+	$(CXX) $(CXXFLAGS) -fintelfpga -fsycl-link $^ -o $@ -Xshardware
+vector-add-usm_report.a_usm: vector-add-usm.o
+	$(CXX) $(CXXFLAGS) -fintelfpga -fsycl-link $^ -o $@ -Xshardware
+
+
+# Hardware
+hw: vector-add-buffers.fpga
+hw_usm: vector-add-usm.fpga
+
 vector-add-buffers.fpga: vector-add-buffers.o
 	$(CXX) $(CXXFLAGS) -fintelfpga $^ -o $@ -Xshardware
-	# -Xsboard=/opt/intel/oneapi/intel_s10sx_pac:pac_s10
 vector-add-usm.fpga: vector-add-usm.o
 	$(CXX) $(CXXFLAGS) -fintelfpga $^ -o $@ -Xshardware
-	# -Xsboard=/opt/intel/oneapi/intel_s10sx_pac:pac_s10
 
 
 run_emu: vector-add-buffers.fpga_emu
@@ -40,18 +48,10 @@ run_emu: vector-add-buffers.fpga_emu
 run_emu_usm: vector-add-usm.fpga_emu_usm
 	./vector-add-usm.fpga_emu_usm
 
-
 run_hw: vector-add-buffers.fpga
 	./vector-add-buffers.fpga
 run_hw_usm: vector-add-usm.fpga
 	./vector-add-usm.fpga	
-
-
-
-vector-add-buffers_report.a: vector-add-buffers.o
-	$(CXX) $(CXXFLAGS) -fintelfpga -fsycl-link $^ -o $@ -Xshardware
-vector-add-usm_report.a_usm: vector-add-usm.o
-	$(CXX) $(CXXFLAGS) -fintelfpga -fsycl-link $^ -o $@ -Xshardware
 
 
 clean:
