@@ -37,31 +37,39 @@ for f in scripts/test_run_agilex*; do qsub $f; done
 
 ## <a name="devcloud-summary"></a> Quick summary
 
-- compiling for **Arria10**
+- compiling for **Arria10** \
+    `source /glob/development-tools/versions/oneapi/2023.2.0.2_s/oneapi/setvars.sh --force` \
+    or `source /glob/development-tools/versions/oneapi/2024.0.2.1/oneapi/setvars.sh --force` \
+    or `source /glob/development-tools/versions/oneapi/2024.0.2/oneapi/setvars.sh --force`
 
-- compiling for **Stratix10**
+- compiling for **Stratix10** \
+    `source /glob/development-tools/versions/oneapi/2023.1.1/oneapi/setvars.sh --force` \
+    or `source /glob/development-tools/versions/oneapi/2023.2.0.2_s/oneapi/setvars.sh --force` \
+    or `source /glob/development-tools/versions/oneapi/2024.0.2.1/oneapi/setvars.sh --force` \
+    or `source /glob/development-tools/versions/oneapi/2024.0/oneapi/setvars.sh --force`
 
 - compiling for **Agilex** \
     `source /glob/development-tools/versions/oneapi/2023.2.0.1/oneapi/setvars.sh --force` \
-    or `source /glob/development-tools/versions/oneapi/2024.0.2/oneapi/setvars.sh --force`
+    or `source /glob/development-tools/versions/oneapi/2024.0.2/oneapi/setvars.sh --force` \
+    or `source /glob/development-tools/versions/oneapi/2024.0/oneapi/setvars.sh --force`
 
 ## for Arria10
 | oneapi_version | emulator | report | hardware | run_hardware |
 |---|---|---|---|---|
-| 2022.3.1 | NO | - | - | - |
-| 2023.0.1 | YES | YES | YES | NO -42 sycl::_V1::runtime_error |
-| 2023.0 | YES | YES | YES | NO -42 sycl::_V1::runtime_error |
-| 2023.1.0.4 | YES | YES | NO | - |
-| 2023.1.1_cmake | YES | YES | NO | - |
-| 2023.1.1 | NO | YES | NO | - |
-| 2023.1.2 | NO | YES | NO | - |
-| 2023.2.0 | NO | YES | NO | - |
-| 2023.2.0.1 | NO | YES | NO | - |
-| 2023.2.0.2_s |  |  |  |  |
-| 2024.0.2.1 |  |  |  |  |
-| 2024.0.2 |  |  |  |  |
-| 2024.0 |  |  |  |  |
-| test |  |  |  |  |
+| 2022.3.1 | NO | NO | NO | - |
+| 2023.0.1 | YES | NO | YES | NO -42 sycl::_V1::runtime_error |
+| 2023.0 | YES | NO | YES | NO -42 sycl::_V1::runtime_error |
+| 2023.1.0.4 | YES | NO | NO | - |
+| 2023.1.1_cmake | YES | NO | NO | - |
+| 2023.1.1 | NO | NO | NO | - |
+| 2023.1.2 | NO | NO | NO | - |
+| 2023.2.0 | NO | NO | NO | - |
+| 2023.2.0.1 | NO | NO | NO | - |
+| 2023.2.0.2_s | YES | YES | YES | YES |
+| 2024.0.2.1 | YES | YES | YES | YES |
+| 2024.0.2 | YES | NO | YES | YES |
+| 2024.0 | NO | NO | NO | - |
+| test | YES | NO | NO | - |
 
 ## for Stratix10
 | oneapi_version | emulator | report | hardware | run_hardware |
@@ -70,16 +78,16 @@ for f in scripts/test_run_agilex*; do qsub $f; done
 | 2023.0.1 | YES | YES | YES | NO -42 sycl::_V1::runtime_error |
 | 2023.0 | YES | YES | YES | NO -42 sycl::_V1::runtime_error |
 | 2023.1.0.4 | YES | YES | YES | NO -42 sycl::_V1::runtime_error |
-| 2023.1.1_cmake |  |  |  |  |
-| 2023.1.1 |  |  |  |  |
-| 2023.1.2 |  |  |  |  |
-| 2023.2.0 |  |  |  |  |
-| 2023.2.0.1 |  |  |  |  |
-| 2023.2.0.2_s |  |  |  |  |
-| 2024.0.2.1 |  |  |  |  |
-| 2024.0.2 |  |  |  |  |
-| 2024.0 |  |  |  |  |
-| test |  |  |  |  |
+| 2023.1.1_cmake | YES | YES | YES | NO -42 sycl::_V1::runtime_error |
+| 2023.1.1 | YES | YES | YES | YES |
+| 2023.1.2 | YES | YES | NO | - |
+| 2023.2.0 | YES | YES | YES | NO -42 sycl::_V1::runtime_error |
+| 2023.2.0.1 | YES | YES | YES | NO -42 sycl::_V1::runtime_error |
+| 2023.2.0.2_s | YES | YES | YES | YES |
+| 2024.0.2.1 | YES | NO | YES | YES |
+| 2024.0.2 | YES | NO | YES | NO |
+| 2024.0 | YES | NO | YES | YES |
+| test | YES | NO | YES | NO |
 
 ## for Agilex
 | oneapi_version | emulator | report | hardware | run_hardware |
@@ -94,10 +102,11 @@ for f in scripts/test_run_agilex*; do qsub $f; done
 | 2023.2.0.2_s | YES | YES | NO | - |
 | 2023.2.0 | YES | YES | NO | - |
 | 2023.2.0.1 | YES | YES | YES | YES |
-| 2024.0.2.1 |  |  |  |  |
+| 2024.0.2.1 | YES | YES | NO | NO |
 | 2024.0.2 | YES | YES | YES | YES |
-| 2024.0 |  |  |  |  |
-| test |  |  |  |  |
+| 2024.0 | YES | YES | YES | YES |
+| test | YES | YES | NO | - |
+
 
 
 # Credits
