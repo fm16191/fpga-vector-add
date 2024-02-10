@@ -19,7 +19,7 @@ oneapi_version=$version
 source /glob/development-tools/versions/oneapi/\$oneapi_version/oneapi/setvars.sh --force
 
 TARGET=build-stratix-\$oneapi_version
-BOARD_NAME=intel_s10gx_pac:pac_s10
+# BOARD_NAME=intel_s10gx_pac:pac_s10
 
 # prepare env
 mkdir -p \$TARGET

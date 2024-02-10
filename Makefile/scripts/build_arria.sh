@@ -3,7 +3,7 @@
 #PBS -l nodes=1:fpga:fpga_runtime:arria10:ppn=2
 #PBS -d .
 
-oneapi_version=""
+oneapi_version="2024.0.2"
 
 source /glob/development-tools/versions/oneapi/$oneapi_version/oneapi/setvars.sh --force
 

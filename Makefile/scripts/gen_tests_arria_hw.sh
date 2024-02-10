@@ -23,7 +23,7 @@ TARGET=build-arria-\$oneapi_version
 
 # prepare env
 mkdir -p \$TARGET
-cp -r Makefile.fpga *.s src \$TARGET
+cp -r Makefile.fpga src \$TARGET
 cd \$TARGET
 
 # sed -i "s/\(\-Xsboard\).*$/\1=\${BOARD_NAME}/g" Makefile.fpga
