@@ -38,6 +38,8 @@ for f in scripts/test_run_agilex*; do qsub $f; done
 
 # Now, the results
 
+After testing all available oneAPI environments, we can see that those work.
+
 ## <a name="devcloud-summary"></a> Quick summary
 
 - compiling for **Arria10** \
@@ -55,6 +57,8 @@ for f in scripts/test_run_agilex*; do qsub $f; done
     `source /glob/development-tools/versions/oneapi/2023.2.0.1/oneapi/setvars.sh --force` \
     or `source /glob/development-tools/versions/oneapi/2024.0.2/oneapi/setvars.sh --force` \
     or `source /glob/development-tools/versions/oneapi/2024.0/oneapi/setvars.sh --force`
+
+The tables below show the success state by device type and oneAPI version for each target (emulator, report, hardware, and run_hardware).
 
 ## for Arria10
 | oneapi_version | emulator | report | hardware | run_hardware |
