@@ -4,14 +4,18 @@ This repository contains vector-add test cases in cmake and makefile, to test di
 
 The source code is from oneAPI-samples, with additional scripts added by me.
 
-***Testing on Intel's devcloud ?***
+# Testing on Intel's devcloud
 
-TDLR : 
+The goal here is to create a specific vector-add environment for each oneAPI version and test it to figure out what works and what doesn't when compiling the design for emulator, for report, for hardware, and running the hardware design.
+
+Two things were noticed to be important: the version of the oneAPI environment being used and the node on which you are running. Certain nodes may not be properly configured, and some oneAPI environments may not function correctly for a specific device target.
+
+---
+**TLDR** : find the results for 
 - [working oneAPI versions](#devcloud-summary)
 - [working PBS nodes](#devcloud-nodes-summary)
 
-
-# Testing on Intel's devcloud
+--- 
 
 The goal here is to create a specific vector-add environment for each oneAPI version and test it to figure out what works and what doesn't when compiling the design for emulator, for report, for hardware, and running the hardware design.
 
@@ -41,22 +45,6 @@ for f in scripts/test_run_agilex*; do qsub $f; done
 After testing all available oneAPI environments, we can see that those work.
 
 ## <a name="devcloud-summary"></a> Quick summary
-
-- compiling for **Arria10** \
-    `source /glob/development-tools/versions/oneapi/2023.2.0.2_s/oneapi/setvars.sh --force` \
-    or `source /glob/development-tools/versions/oneapi/2024.0.2.1/oneapi/setvars.sh --force` \
-    or `source /glob/development-tools/versions/oneapi/2024.0.2/oneapi/setvars.sh --force`
-
-- compiling for **Stratix10** \
-    `source /glob/development-tools/versions/oneapi/2023.1.1/oneapi/setvars.sh --force` \
-    or `source /glob/development-tools/versions/oneapi/2023.2.0.2_s/oneapi/setvars.sh --force` \
-    or `source /glob/development-tools/versions/oneapi/2024.0.2.1/oneapi/setvars.sh --force` \
-    or `source /glob/development-tools/versions/oneapi/2024.0/oneapi/setvars.sh --force`
-
-- compiling for **Agilex** \
-    `source /glob/development-tools/versions/oneapi/2023.2.0.1/oneapi/setvars.sh --force` \
-    or `source /glob/development-tools/versions/oneapi/2024.0.2/oneapi/setvars.sh --force` \
-    or `source /glob/development-tools/versions/oneapi/2024.0/oneapi/setvars.sh --force`
 
 The tables below show the success state by device type and oneAPI version for each target (emulator, report, hardware, and run_hardware).
 
@@ -109,12 +97,14 @@ The tables below show the success state by device type and oneAPI version for ea
 | 2023.2.0.2_s | YES | YES | NO | - |
 | 2023.2.0 | YES | YES | NO | - |
 | 2023.2.0.1 | YES | YES | YES | YES |
-| 2024.0.2.1 | YES | YES | NO | NO |
+| 2024.0.2.1 | YES | YES | NO | - |
 | 2024.0.2 | YES | YES | YES | YES |
 | 2024.0 | YES | YES | YES | YES |
 | test | YES | YES | NO | - |
 
-## Report failing
+Is suggested to run `source /glob/development-tools/versions/oneapi/<oneAPI_version>/oneapi/setvars.sh --force` in your PBS script to ensure a valid working oneAPI compilation environment
+
+## Reports failing
 
 All failing reports generates the `static_reports_creation_log.temp` file, which content is for each and everyone of them :
 ```text
@@ -247,7 +237,7 @@ while the working ones report `ICD diagnostics PASSED`
 
 Tho, both non-working and working node reports `DIAGNOSTIC_PASSED`
 
-## <a name="devcloud-nodes-summary"></a>  Working nodes
+## Working nodes
 
 Knowing that some environments are not properly configured, I set up some scripts to check which nodes are working. 
 
@@ -261,7 +251,7 @@ pbsnodes | grep agilex -B4 | grep s006 # Agilex nodes
 
 The scripts can be found at `scripts/devcloud_working_<device>_nodes.sh` where device is arria, stratix or agilex. These scripts will run for the `test_node_<device>.sh` script for all nodes, which will tell if the node is configured correctly or not. 
 
-Here are the results:
+## <a name="devcloud-nodes-summary"></a> Here are the results
 
 ### Arria10 nodes
 
@@ -298,6 +288,9 @@ Here are the results:
 | s006-n003 | YES |
 
 
+Bad news it that once the working nodes were spotted, attempting to re-compile the vector-add using the oneAPI versions that result int the `-42 sycl::_V1::runtime_error` error, still allow for a working compilation for hardware design, it still couldn't be runned on the node, and returns the same error.
+
+<!--
 ### other experiments
 
 Looking at `lshw`, same goes on. Even tho I don't have root access, the hardware reported seems to be the same, with changes in MAC and IP adresses.
@@ -359,7 +352,7 @@ mypc ❯ diff env_s001-n081 env_s001-n083 | grep ">"
 
 Those are specific env differences that the working node `s001-n083` has setted up, but `s001-n081` has not.
 
-I naively tried to set them manually, but it didn't help.
+I naively tried to set them manually, but it didn't help. -->
 
 
 # Credits
