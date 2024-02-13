@@ -52,8 +52,8 @@ The tables below show the success state by device type and oneAPI version for ea
 | oneapi_version | emulator | report | hardware | run_hardware |
 |---|---|---|---|---|
 | 2022.3.1 | NO | NO | NO | - |
-| 2023.0.1 | YES | NO | YES | NO -42 sycl::_V1::runtime_error |
-| 2023.0 | YES | NO | YES | NO -42 sycl::_V1::runtime_error |
+| 2023.0.1 | YES | NO | YES | YES |
+| 2023.0 | YES | NO | YES | YES |
 | 2023.1.0.4 | YES | NO | NO | - |
 | 2023.1.1_cmake | YES | NO | NO | - |
 | 2023.1.1 | NO | NO | NO | - |
@@ -76,13 +76,13 @@ The tables below show the success state by device type and oneAPI version for ea
 | 2023.1.1_cmake | YES | YES | YES | NO -42 sycl::_V1::runtime_error |
 | 2023.1.1 | YES | YES | YES | YES |
 | 2023.1.2 | YES | YES | NO | - |
-| 2023.2.0 | YES | YES | YES | NO -42 sycl::_V1::runtime_error |
-| 2023.2.0.1 | YES | YES | YES | NO -42 sycl::_V1::runtime_error |
+| 2023.2.0 | YES | YES | YES | YES |
+| 2023.2.0.1 | YES | YES | YES | YES |
 | 2023.2.0.2_s | YES | YES | YES | YES |
 | 2024.0.2.1 | YES | NO | YES | YES |
-| 2024.0.2 | YES | NO | YES | NO |
+| 2024.0.2 | YES | NO | YES | - |
 | 2024.0 | YES | NO | YES | YES |
-| test | YES | NO | YES | NO |
+| test | YES | NO | YES | - |
 
 ## for Agilex
 | oneapi_version | emulator | report | hardware | run_hardware |
