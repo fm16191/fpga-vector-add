@@ -1,0 +1,15 @@
+*.o
+*.d
+*.out
+*.mon
+*.emu
+*.aocr
+*.aoco
+*.prj
+*.cpu
+*.fpga_emu
+*.fpga_simu
+*.fpga
+*.a
+*.e*
+*.o*
